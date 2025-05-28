@@ -18,6 +18,8 @@ import { Helmet } from "react-helmet-async";
 export default function Homepage() {
   const [activeSection, setActiveSection] = useState("");
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [chatbotOpen, setChatbotOpen] = useState(false);
+  const [chatbotInitialMessage, setChatbotInitialMessage] = useState("");
 
   const { ref: getStartedRef } = useInView({
     threshold: 0.5,
@@ -88,6 +90,11 @@ export default function Homepage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const openChatbotWithMessage = (msg) => {
+    setChatbotInitialMessage(msg);
+    setChatbotOpen(true);
+  };
+
   return (
     <div>
       <Helmet>
@@ -109,7 +116,7 @@ export default function Homepage() {
         <GetStartedSection />
       </div>
       <div ref={whyUsRef}>
-        <WhyUs />
+        <WhyUs openChatbotWithMessage={openChatbotWithMessage} />
       </div>
       <div ref={qnaRef}>
         <Qna />
@@ -140,30 +147,34 @@ export default function Homepage() {
         rel="noopener noreferrer"
         style={{
           position: "fixed",
-          bottom: "20px",
-          left: "20px",
+          bottom: window.matchMedia("(max-width: 768px)").matches ? "16px" : "20px",
+          left: window.matchMedia("(max-width: 768px)").matches ? "16px" : "20px",
           zIndex: 1000,
           display: "flex",
           alignItems: "center",
           backgroundColor: "#25D366",
           color: "white",
-          padding: "10px 15px",
+          padding: window.matchMedia("(max-width: 768px)").matches ? "7px" : "10px 15px",
           borderRadius: "30px",
           textDecoration: "none",
           boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
           fontWeight: "bold",
+          minWidth: window.matchMedia("(max-width: 768px)").matches ? "44px" : undefined,
+          height: window.matchMedia("(max-width: 768px)").matches ? "44px" : undefined,
+          justifyContent: "center",
         }}
       >
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png"
           alt="WhatsApp"
           style={{
-            width: "30px",
-            height: "30px",
-            marginRight: "10px",
+            width: window.matchMedia("(max-width: 768px)").matches ? "22px" : "30px",
+            height: window.matchMedia("(max-width: 768px)").matches ? "22px" : "30px",
+            marginRight: window.matchMedia("(max-width: 768px)").matches ? "0" : "10px",
           }}
         />
-        Ada pertanyaan? WA aja!
+        {/* Label hanya tampil di desktop */}
+        {!window.matchMedia("(max-width: 768px)").matches && "Ada pertanyaan? WA aja!"}
       </a>
 
       {/* ⬆️ Scroll to Top Button */}
@@ -192,7 +203,11 @@ export default function Homepage() {
       )}
 
       {/* Chatbot floating button */}
-      <ChatbotWidget />
+      <ChatbotWidget
+        initialMessage={chatbotInitialMessage}
+        open={chatbotOpen}
+        setOpen={setChatbotOpen}
+      />
 
       <Routes>
         <Route path="/artikel/:id" element={<ArticleDetail />} />

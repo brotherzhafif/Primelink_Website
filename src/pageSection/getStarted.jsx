@@ -9,7 +9,10 @@ export default function GetStarted() {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/visimisi');
+    const pricingSection = document.getElementById('pricing');
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (

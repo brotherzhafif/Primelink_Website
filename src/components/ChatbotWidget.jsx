@@ -1,9 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const API_URL = "https://primelink-api.vercel.app/api/chatbot";
 
-export default function ChatbotWidget() {
-    const [open, setOpen] = useState(false);
+export default function ChatbotWidget({ initialMessage = "", open: openProp, setOpen: setOpenProp }) {
+    // Gunakan controlled open jika diberikan, fallback ke internal state
+    const [internalOpen, setInternalOpen] = useState(false);
+    const open = typeof openProp === "boolean" ? openProp : internalOpen;
+    const setOpen = setOpenProp || setInternalOpen;
+
     const [messages, setMessages] = useState([
         { from: "bot", text: "Halo! Ada yang bisa dibantu? Silakan ketik pertanyaan Anda." }
     ]);
@@ -11,9 +15,42 @@ export default function ChatbotWidget() {
     const [loading, setLoading] = useState(false);
     const chatEndRef = useRef(null);
 
-    const sendMessage = async () => {
-        if (!input.trim()) return;
-        const userMsg = { from: "user", text: input };
+    // Untuk auto-send initialMessage
+    const [pendingInitial, setPendingInitial] = useState(initialMessage);
+
+    // Tambahkan deteksi mobile
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    // Kirim initialMessage jika ada, hanya sekali saat open
+    useEffect(() => {
+        if (open && pendingInitial) {
+            setInput(pendingInitial);
+        }
+    }, [open, pendingInitial]);
+
+    // Auto-send jika input diisi dari initialMessage dan chatbot dibuka
+    useEffect(() => {
+        if (open && pendingInitial && input === pendingInitial) {
+            sendMessage(pendingInitial);
+            setPendingInitial(""); // Hanya sekali
+        }
+        // eslint-disable-next-line
+    }, [input, open, pendingInitial]);
+
+    // Jika initialMessage berubah dari parent, update pendingInitial
+    useEffect(() => {
+        if (initialMessage) {
+            setPendingInitial(initialMessage);
+            setInput(initialMessage);
+            if (!open) setOpen(true);
+        }
+        // eslint-disable-next-line
+    }, [initialMessage]);
+
+    const sendMessage = async (msg) => {
+        const messageToSend = typeof msg === "string" ? msg : input;
+        if (!messageToSend.trim()) return;
+        const userMsg = { from: "user", text: messageToSend };
         setMessages((msgs) => [...msgs, userMsg]);
         setInput("");
         setLoading(true);
@@ -22,7 +59,7 @@ export default function ChatbotWidget() {
             const res = await fetch(API_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: input, sessionId: "web-widget" }),
+                body: JSON.stringify({ message: messageToSend, sessionId: "web-widget" }),
             });
             const data = await res.json();
             setMessages((msgs) => [
@@ -51,83 +88,90 @@ export default function ChatbotWidget() {
     return (
         <>
             {/* Floating Button */}
-            <button
-                onClick={() => setOpen((v) => !v)}
-                style={{
-                    position: "fixed",
-                    bottom: "20px",
-                    right: "20px",
-                    zIndex: 1001,
-                    background: "#1D6EE5",
-                    color: "white",
-                    borderRadius: "30px",
-                    minWidth: 56,
-                    height: 56,
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
-                    border: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 28,
-                    cursor: "pointer",
-                    padding: "0 20px 0 16px",
-                    gap: 10,
-                }}
-                aria-label="Chatbot"
-            >
-                {/* Icon robot */}
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-                    <rect x="4" y="8" width="16" height="10" rx="4" fill="#fff" stroke="#1D6EE5" strokeWidth="2" />
-                    <rect x="9" y="2" width="6" height="6" rx="3" fill="#fff" stroke="#1D6EE5" strokeWidth="2" />
-                    <circle cx="8.5" cy="13" r="1.5" fill="#1D6EE5" />
-                    <circle cx="15.5" cy="13" r="1.5" fill="#1D6EE5" />
-                    <rect x="11" y="16" width="2" height="2" rx="1" fill="#1D6EE5" />
-                </svg>
-                <span
+            {!open && (
+                <button
+                    onClick={() => setOpen(true)}
                     style={{
-                        fontSize: 15,
-                        fontWeight: 600,
-                        color: "#fff",
-                        whiteSpace: "nowrap",
-                        marginLeft: 6,
-                        letterSpacing: 0.2,
-                        display: "inline",
+                        position: "fixed",
+                        bottom: isMobile ? 16 : 20,
+                        right: isMobile ? 16 : 20,
+                        zIndex: 1001,
+                        background: "#1D6EE5",
+                        color: "white",
+                        borderRadius: "30px",
+                        minWidth: isMobile ? 44 : 56,
+                        height: isMobile ? 44 : 56,
+                        boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+                        border: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: isMobile ? 22 : 28,
+                        cursor: "pointer",
+                        padding: isMobile ? "0 10px 0 10px" : "0 20px 0 16px",
+                        gap: 10,
                     }}
+                    aria-label="Chatbot"
                 >
-                    Chat Servo Bot
-                </span>
-            </button>
+                    {/* Icon robot */}
+                    <svg width={isMobile ? 22 : 28} height={isMobile ? 22 : 28} fill="none" viewBox="0 0 24 24">
+                        <rect x="4" y="8" width="16" height="10" rx="4" fill="#fff" stroke="#1D6EE5" strokeWidth="2" />
+                        <rect x="9" y="2" width="6" height="6" rx="3" fill="#fff" stroke="#1D6EE5" strokeWidth="2" />
+                        <circle cx="8.5" cy="13" r="1.5" fill="#1D6EE5" />
+                        <circle cx="15.5" cy="13" r="1.5" fill="#1D6EE5" />
+                        <rect x="11" y="16" width="2" height="2" rx="1" fill="#1D6EE5" />
+                    </svg>
+                    {/* Label hanya tampil di desktop */}
+                    {!isMobile && (
+                        <span
+                            style={{
+                                fontSize: 15,
+                                fontWeight: 600,
+                                color: "#fff",
+                                whiteSpace: "nowrap",
+                                marginLeft: 6,
+                                letterSpacing: 0.2,
+                                display: "inline",
+                            }}
+                        >
+                            Chat Servo Bot
+                        </span>
+                    )}
+                </button>
+            )}
             {/* Chatbot Popup */}
             {open && (
                 <div
                     style={{
                         position: "fixed",
-                        bottom: 90,
-                        right: 20,
-                        width: 370,
-                        maxWidth: "95vw",
+                        bottom: isMobile ? 68 : 90,
+                        right: isMobile ? 8 : 20,
+                        width: isMobile ? "95vw" : 370,
+                        maxWidth: isMobile ? "98vw" : "95vw",
                         background: "#f7f7f9",
-                        borderRadius: 20,
+                        borderRadius: 16,
                         boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
                         zIndex: 1002,
                         display: "flex",
                         flexDirection: "column",
                         overflow: "hidden",
                         border: "1px solid #e5e7eb",
+                        minHeight: isMobile ? 320 : undefined,
+                        maxHeight: isMobile ? 420 : 500,
                     }}
                 >
                     {/* Header */}
                     <div style={{
                         background: "#1D6EE5",
                         color: "#fff",
-                        padding: "14px 20px",
+                        padding: isMobile ? "10px 14px" : "14px 20px",
                         fontWeight: 600,
-                        fontSize: 16,
+                        fontSize: isMobile ? 15 : 16,
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
-                        borderTopLeftRadius: 20,
-                        borderTopRightRadius: 20,
+                        borderTopLeftRadius: 16,
+                        borderTopRightRadius: 16,
                     }}>
                         Servobot Primelink
                         <button
@@ -136,7 +180,7 @@ export default function ChatbotWidget() {
                                 background: "transparent",
                                 border: "none",
                                 color: "#fff",
-                                fontSize: 20,
+                                fontSize: isMobile ? 18 : 20,
                                 cursor: "pointer",
                                 marginLeft: 8,
                             }}
@@ -148,13 +192,13 @@ export default function ChatbotWidget() {
                     {/* Chat area */}
                     <div
                         style={{
-                            padding: 16,
+                            padding: isMobile ? 10 : 16,
                             background: "#ece5dd",
                             flex: 1,
                             overflowY: "auto",
-                            maxHeight: 400,
-                            minHeight: 220,
-                            fontSize: 15,
+                            maxHeight: isMobile ? 220 : 400,
+                            minHeight: isMobile ? 120 : 220,
+                            fontSize: isMobile ? 13 : 15,
                             display: "flex",
                             flexDirection: "column",
                         }}
@@ -163,7 +207,7 @@ export default function ChatbotWidget() {
                             <div
                                 key={idx}
                                 style={{
-                                    marginBottom: 10,
+                                    marginBottom: 8,
                                     display: "flex",
                                     justifyContent: msg.from === "user" ? "flex-end" : "flex-start",
                                 }}
@@ -173,12 +217,12 @@ export default function ChatbotWidget() {
                                         display: "inline-block",
                                         background: msg.from === "user" ? "#dcf8c6" : "#fff",
                                         color: "#222",
-                                        borderRadius: msg.from === "user" ? "16px 16px 4px 16px" : "16px 16px 16px 4px",
-                                        padding: "10px 16px",
-                                        maxWidth: 240,
+                                        borderRadius: msg.from === "user" ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
+                                        padding: isMobile ? "8px 12px" : "10px 16px",
+                                        maxWidth: isMobile ? 180 : 240,
                                         wordBreak: "break-word",
                                         boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
-                                        fontSize: 15,
+                                        fontSize: isMobile ? 13 : 15,
                                     }}
                                 >
                                     {msg.text}
@@ -189,11 +233,11 @@ export default function ChatbotWidget() {
                     </div>
                     {/* Input area */}
                     <div style={{
-                        padding: 12,
+                        padding: isMobile ? 8 : 12,
                         borderTop: "1px solid #e5e7eb",
                         background: "#f7f7f9",
                         display: "flex",
-                        gap: 8,
+                        gap: 6,
                         alignItems: "center",
                     }}>
                         <textarea
@@ -206,9 +250,9 @@ export default function ChatbotWidget() {
                                 width: "100%",
                                 resize: "none",
                                 border: "1px solid #e5e7eb",
-                                borderRadius: 16,
-                                padding: "10px 12px",
-                                fontSize: 15,
+                                borderRadius: 12,
+                                padding: isMobile ? "7px 10px" : "10px 12px",
+                                fontSize: isMobile ? 13 : 15,
                                 outline: "none",
                                 marginBottom: 0,
                                 background: "#fff",
@@ -216,16 +260,16 @@ export default function ChatbotWidget() {
                             disabled={loading}
                         />
                         <button
-                            onClick={sendMessage}
+                            onClick={() => sendMessage()}
                             disabled={loading || !input.trim()}
                             style={{
                                 background: "#1D6EE5",
                                 color: "#fff",
                                 border: "none",
-                                borderRadius: 16,
-                                padding: "10px 18px",
+                                borderRadius: 12,
+                                padding: isMobile ? "7px 12px" : "10px 18px",
                                 fontWeight: 600,
-                                fontSize: 15,
+                                fontSize: isMobile ? 13 : 15,
                                 cursor: loading ? "not-allowed" : "pointer",
                                 opacity: loading ? 0.7 : 1,
                                 transition: "opacity 0.2s"

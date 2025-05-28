@@ -27,7 +27,7 @@ const servicesData = [
   },
 ];
 
-export default function OurServices() {
+export default function OurServices({ openChatbotWithMessage }) {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -46,6 +46,13 @@ export default function OurServices() {
   };
 
   const currentService = servicesData[currentIndex];
+
+  const handleAskServoBot = (title, description) => {
+    const message = `Halo, bisa jelaskan lebih lanjut tentang ${title}? ${description}`;
+    if (openChatbotWithMessage) {
+      openChatbotWithMessage(message);
+    }
+  };
 
   return (
     <>
@@ -78,7 +85,7 @@ export default function OurServices() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="bg-[#001D52] text-white p-6 rounded-xl shadow-lg cursor-pointer"
-              onClick={() => handleNavigate(currentService.onClickPath)}
+              onClick={() => handleAskServoBot(currentService.title, currentService.description)}
             >
               <div className="flex items-start gap-5">
                 <img
@@ -140,7 +147,16 @@ export default function OurServices() {
               bisnis terhubung dengan cepat, stabil, dan aman. Jelajahi layanan
               kami dan temukan paket yang sesuai untuk kebutuhan Anda.
             </p>
-            <button className="px-4 py-2 bg-[#3B82F6] text-white rounded-full shadow-md hover:bg-[#2563eb] transition-all">
+            <button
+              className="px-4 py-2 bg-[#3B82F6] text-white rounded-full shadow-md hover:bg-[#2563eb] transition-all"
+              onClick={() => {
+                if (openChatbotWithMessage) {
+                  openChatbotWithMessage(
+                    "Halo, bisa jelaskan layanan, fitur, dan kelebihan utama dari PrimeLink secara umum?"
+                  );
+                }
+              }}
+            >
               Jelajahi Layanan Kami
             </button>
           </div>
