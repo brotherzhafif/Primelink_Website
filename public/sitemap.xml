@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://primelink.id/</loc>
+    <loc>https://maxy-primelink.vercel.app/</loc>
+    <loc>http://maxy-primelink.vercel.app/#our-services</loc>
+    <loc>http://maxy-primelink.vercel.app/#pricing</loc>
+    <loc>http://maxy-primelink.vercel.app/#contact</loc>
+    <loc>http://maxy-primelink.vercel.app/#blog</loc>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>http://localhost:5173/#our-services</loc>
-    <loc>http://localhost:5173/#pricing</loc>
-    <loc>http://localhost:5173/#contact</loc>
-    <loc>http://localhost:5173/#blog</loc>
-    <loc>https://primelink.id/artikel/</loc>
-    <priority>0.8</priority>
   </url>
   <!-- Tambahkan URL lain sesuai kebutuhan -->
 </urlset>
