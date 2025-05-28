@@ -44,9 +44,8 @@ export default function Navbar() {
   const navLinkStyle = () =>
     "text-black hover:text-[#1a6ba3] transition-colors duration-200";
 
-  const headerClass = `${
-    isScrolled ? "fixed shadow-md" : "relative"
-  } top-0 left-0 right-0 z-50 bg-white transition-all duration-300`;
+  const headerClass = `${isScrolled ? "fixed shadow-md" : "relative"
+    } top-0 left-0 right-0 z-50 bg-white transition-all duration-300`;
 
   return (
     <div className="z-50">
@@ -138,38 +137,6 @@ export default function Navbar() {
                       Blog
                     </a>
                   </li>
-                  <li>
-                    <button
-                      onClick={() => setMoreSubmenuOpen(!moreSubmenuOpen)}
-                      className="w-full text-left px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-colors"
-                    >
-                      More ▾
-                    </button>
-                    {moreSubmenuOpen && (
-                      <div className="ml-4 mt-1 space-y-1">
-                        <a
-                          href="#karir"
-                          onClick={() => {
-                            setDropdownOpen(false);
-                            setMoreSubmenuOpen(false);
-                          }}
-                          className="block px-4 py-2 text-black hover:bg-blue-50 rounded-lg"
-                        >
-                          Karir
-                        </a>
-                        <a
-                          href="#faq"
-                          onClick={() => {
-                            setDropdownOpen(false);
-                            setMoreSubmenuOpen(false);
-                          }}
-                          className="block px-4 py-2 text-black hover:bg-blue-50 rounded-lg"
-                        >
-                          FAQ
-                        </a>
-                      </div>
-                    )}
-                  </li>
                 </ul>
               )}
             </div>
@@ -221,7 +188,7 @@ export default function Navbar() {
             </a>
 
             {/* Dropdown More */}
-            <div className="relative">
+            {/* <div className="relative">
               <button
                 onClick={() => setMoreSubmenuOpen(!moreSubmenuOpen)}
                 className="px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-colors"
@@ -246,7 +213,7 @@ export default function Navbar() {
                   </a>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
         </motion.header>
       )}

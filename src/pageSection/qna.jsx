@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet-async";
+
 const PriceList = () => {
   const eventData = [
     {
@@ -52,52 +54,70 @@ const PriceList = () => {
   ];
 
   return (
-    <section id="pricing" className="bg-white py-20 px-8">
-      <div className="max-w-screen-xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-slate-900 mb-14">
-          Price <span className="text-blue-600">List</span>
-        </h2>
+    <>
+      <Helmet>
+        <title>Daftar Harga Paket Internet | PrimeLink</title>
+        <meta name="description" content="Lihat daftar harga paket internet, TV, dan telepon dari PrimeLink. Pilih paket terbaik untuk kebutuhan Anda." />
+        <link rel="canonical" href="https://primelink.id/#pricing" />
+      </Helmet>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {eventData.map((pkg, index) => (
-            <div
-              key={index}
-              className="bg-[#061C3D] text-white p-6 rounded-2xl shadow-lg flex flex-col h-full min-h-[520px]"
-            >
-              <div className="flex flex-col flex-1 justify-between">
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">{pkg.title}</h3>
-                  <div className="flex items-end gap-1 mb-4">
-                    <span className="text-3xl font-bold">{pkg.price}</span>
-                    <span className="text-base text-gray-300">{pkg.subtitle}</span>
-                  </div>
-                  <p className="text-sm text-gray-300 mb-6">{pkg.description}</p>
+      <section id="pricing" className="bg-white py-20 px-8">
+        <div className="max-w-screen-xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-slate-900 mb-14">
+            Price <span className="text-blue-600">List</span>
+          </h2>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {eventData.map((pkg, index) => (
+              <div
+                key={index}
+                className="bg-[#061C3D] text-white p-6 rounded-2xl shadow-lg flex flex-col h-full min-h-[520px]"
+              >
+                <div className="flex flex-col flex-1 justify-between">
                   <div>
-                    <h4 className="text-sm font-semibold mb-2 uppercase tracking-wide text-blue-300">
-                      Core Features
-                    </h4>
-                    <p className="text-sm mb-3">Boost Tools</p>
-                    <ul className="space-y-2 text-sm text-left">
-                      {pkg.features.map((feature, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="text-blue-400 mr-2 mt-0.5">➤</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                    <h3 className="text-xl font-semibold mb-3">{pkg.title}</h3>
+                    <div className="flex items-end gap-1 mb-4">
+                      <span className="text-3xl font-bold">{pkg.price}</span>
+                      <span className="text-base text-gray-300">{pkg.subtitle}</span>
+                    </div>
+                    <p className="text-sm text-gray-300 mb-6">{pkg.description}</p>
 
-                <button className="mt-8 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md transition duration-200 w-full">
-                  Subscribe
-                </button>
+                    <div>
+                      <h4 className="text-sm font-semibold mb-2 uppercase tracking-wide text-blue-300">
+                        Core Features
+                      </h4>
+                      <p className="text-sm mb-3">Boost Tools</p>
+                      <ul className="space-y-2 text-sm text-left">
+                        {pkg.features.map((feature, i) => (
+                          <li key={i} className="flex items-start">
+                            <span className="text-blue-400 mr-2 mt-0.5">➤</span>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <button
+                    className="mt-8 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md transition duration-200 w-full"
+                    onClick={() => {
+                      const paket = pkg.title;
+                      const pesan = `Halo admin Primelink,%0A%0ASaya tertarik untuk berlangganan layanan *${paket}*.%0ASaya ingin mengetahui lebih detail mengenai paket ini dan proses pendaftarannya.%0A%0A*Mohon bantuannya untuk proses pemesanan paket ${paket}.*%0A%0ATerima kasih.`;
+                      window.open(
+                        `https://wa.me/6282281933619?text=${pesan}`,
+                        "_blank"
+                      );
+                    }}
+                  >
+                    Subscribe
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

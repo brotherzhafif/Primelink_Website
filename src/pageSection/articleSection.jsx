@@ -1,43 +1,30 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+// Fungsi untuk membuat slug dari judul
+function slugify(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, "-") // Ganti spasi dengan -
+    .replace(/[^\w\-]+/g, "") // Hapus karakter non-word
+    .replace(/\-\-+/g, "-") // Ganti multiple - dengan single -
+    .replace(/^-+/, "") // Trim - di awal
+    .replace(/-+$/, ""); // Trim - di akhir
+}
 
 export default function ArticleSection() {
   const navigate = useNavigate();
   const scrollRef = useRef(null);
+  const [articles, setArticles] = useState([]);
 
-  const articles = [
-    {
-      id: 1,
-      title: "Cara Mengatasi Internet Lemot Tanpa harus Panik",
-      image: "/images/article1.jpg",
-    },
-    {
-      id: 2,
-      title: "Bagaimana PrimeLink Mendukung UMKM dengan Koneksi handal",
-      image: "/images/article2.jpg",
-    },
-    {
-      id: 3,
-      title: "Mengamankan Jaringan WiFi Rumah Anda dari Ancaman Siber",
-      image: "/images/article3.jpg",
-    },
-    {
-      id: 4,
-      title: "Tips Memilih Provider Internet yang Tepat untuk Keluarga",
-      image: "/images/article4.jpg",
-    },
-    {
-      id: 5,
-      title: "Keamanan Data Pribadi di Era Digital",
-      image: "/images/article5.jpg",
-    },
-    {
-      id: 6,
-      title: "Upgrade Jaringan Rumah: Apa Saja yang Perlu Diketahui?",
-      image: "/images/article6.jpg",
-    },
-  ];
+  useEffect(() => {
+    fetch("https://primelink-api.vercel.app/api/blog")
+      .then((res) => res.json())
+      .then((data) => setArticles(data))
+      .catch(() => setArticles([]));
+  }, []);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -86,18 +73,18 @@ export default function ArticleSection() {
             <div
               key={article.id}
               className="min-w-[280px] max-w-[300px] bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 hover:border-[#1D6EE5] cursor-pointer transition duration-300 overflow-hidden"
-              onClick={() => navigate(`/artikel/${article.id}`)}
+              onClick={() => navigate(`/artikel/${slugify(article.judul_blog)}/${article.id}`)}
             >
               <div className="w-full h-44 bg-gray-100 overflow-hidden">
                 <img
-                  src={article.image}
-                  alt={article.title}
+                  src={article.gambar}
+                  alt={`Gambar artikel ${article.judul_blog}`}
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                 />
               </div>
               <div className="p-4">
                 <h3 className="text-base md:text-lg font-semibold text-gray-800 leading-snug hover:text-[#1D6EE5] transition-colors duration-300">
-                  {article.title}
+                  {article.judul_blog}
                 </h3>
               </div>
             </div>

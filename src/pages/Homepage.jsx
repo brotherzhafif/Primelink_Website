@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { Routes, Route } from "react-router-dom";
 import ArticleSection from "../pageSection/articleSection.jsx";
 import CareerSection from "../pageSection/careerSection.jsx";
 import ContactSection from "../pageSection/contactSection.jsx";
@@ -10,6 +11,9 @@ import Navbar from "../pageSection/navbar.jsx";
 import Qna from "../pageSection/qna.jsx";
 import Testimonial from "../pageSection/testimonial.jsx";
 import WhyUs from "../pageSection/whyUs.jsx";
+import ArticleDetail from "../pageSection/articleDetail.jsx";
+import ChatbotWidget from "../components/ChatbotWidget.jsx";
+import { Helmet } from "react-helmet-async";
 
 export default function Homepage() {
   const [activeSection, setActiveSection] = useState("");
@@ -86,6 +90,20 @@ export default function Homepage() {
 
   return (
     <div>
+      <Helmet>
+        <title>PrimeLink | Internet Cepat & Solusi Digital</title>
+        <meta name="description" content="PrimeLink menghadirkan layanan internet cepat, stabil, dan solusi digital terbaik untuk rumah & bisnis. Cek harga, layanan, dan cakupan wilayah di sini." />
+        <link rel="canonical" href="https://primelink.id/" />
+        <meta property="og:title" content="PrimeLink | Internet Cepat & Solusi Digital" />
+        <meta property="og:description" content="PrimeLink menghadirkan layanan internet cepat, stabil, dan solusi digital terbaik untuk rumah & bisnis. Cek harga, layanan, dan cakupan wilayah di sini." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://primelink.id/" />
+        <meta property="og:image" content="https://primelink.id/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="PrimeLink | Internet Cepat & Solusi Digital" />
+        <meta name="twitter:description" content="PrimeLink menghadirkan layanan internet cepat, stabil, dan solusi digital terbaik untuk rumah & bisnis. Cek harga, layanan, dan cakupan wilayah di sini." />
+        <meta name="twitter:image" content="https://primelink.id/og-image.jpg" />
+      </Helmet>
       <Navbar activeSection={activeSection} />
       <div ref={getStartedRef}>
         <GetStartedSection />
@@ -105,9 +123,9 @@ export default function Homepage() {
       <div ref={articleRef}>
         <ArticleSection />
       </div>
-      <div ref={careerRef}>
+      {/* <div ref={careerRef}>
         <CareerSection />
-      </div>
+      </div> */}
       <div ref={contactRef}>
         <ContactSection />
       </div>
@@ -115,13 +133,15 @@ export default function Homepage() {
 
       {/* ✅ Floating WhatsApp Button */}
       <a
-        href="https://wa.me/6281234567890"
+        href={`https://wa.me/6282281933619?text=${encodeURIComponent(
+          `Halo admin PrimeLink *Saya ingin bertanya lebih lanjut mengenai layanan internet yang tersedia di PrimeLink. Mohon bantuannya untuk memberikan informasi detail terkait paket, harga, dan proses pendaftarannya.* Terima kasih sebelumnya atas respon dan bantuannya.`
+        )}`}
         target="_blank"
         rel="noopener noreferrer"
         style={{
           position: "fixed",
           bottom: "20px",
-          right: "20px",
+          left: "20px",
           zIndex: 1000,
           display: "flex",
           alignItems: "center",
@@ -170,6 +190,13 @@ export default function Homepage() {
           ↑
         </button>
       )}
+
+      {/* Chatbot floating button */}
+      <ChatbotWidget />
+
+      <Routes>
+        <Route path="/artikel/:id" element={<ArticleDetail />} />
+      </Routes>
     </div>
   );
 }

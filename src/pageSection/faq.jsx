@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaQuoteLeft } from 'react-icons/fa';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { Helmet } from "react-helmet-async";
 
 const testimonials = [
   {
@@ -78,6 +79,11 @@ const CombinedSection = () => {
 
   return (
     <>
+      <Helmet>
+        <title>FAQ & Testimonial | PrimeLink</title>
+        <meta name="description" content="Pertanyaan yang sering diajukan dan testimonial pelanggan PrimeLink. Temukan jawaban dan pengalaman pelanggan di sini." />
+        <link rel="canonical" href="https://primelink.id/#faq" />
+      </Helmet>
       {/* TESTIMONIAL SECTION */}
       <section style={{ padding: '60px 20px', fontFamily: 'sans-serif' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
@@ -215,9 +221,8 @@ const CombinedSection = () => {
                 className="w-full text-left px-6 py-5 flex items-center justify-between focus:outline-none hover:bg-gray-50 transition duration-200"
               >
                 <span
-                  className={`font-medium text-sm md:text-base ${
-                    i === openIndex ? 'text-blue-600' : 'text-gray-800'
-                  }`}
+                  className={`font-medium text-sm md:text-base ${i === openIndex ? 'text-blue-600' : 'text-gray-800'
+                    }`}
                 >
                   {faq.question}
                 </span>

@@ -56,33 +56,33 @@ const CoverageSection = () => {
           *
         </div>
       </section>
-      
-{/* Section 2: Google Maps */}
-<section className="bg-[#031738] text-white py-20 px-6 md:px-24 flex flex-col md:flex-row items-center justify-between gap-12">
-  {/* Kiri: Judul & Deskripsi */}
-  <div className="md:w-1/2 space-y-5">
-    <h2 className="text-4xl md:text-5xl font-bold">Cakupan Wilayah</h2>
-    <p className="text-sm md:text-base leading-relaxed text-gray-300 max-w-md">
-      Temukan area yang telah terjangkau layanan <span className="text-white font-medium">PrimeLink</span>. 
-      Peta interaktif ini memudahkan Anda untuk melihat ketersediaan jaringan internet 
-      berkualitas tinggi di lokasi Anda.
-    </p>
-  </div>
 
-  {/* Kanan: Google Maps */}
-  <div className="md:w-1/2 w-full h-[280px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl border border-white/10">
-    <iframe
-      title="Lokasi Prime Link Communication"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7699809584115!2d106.76008610989489!3d-6.161552893799904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f74aff72bb05%3A0xc77379909682171c!2sPT%20Prime%20Link%20Communication!5e0!3m2!1sid!2sid!4v1748333634397!5m2!1sid!2sid"
-      width="100%"
-      height="100%"
-      style={{ border: 0 }}
-      allowFullScreen=""
-      loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-    ></iframe>
-  </div>
-</section>
+      {/* Section 2: Google Maps */}
+      <section className="bg-[#031738] text-white py-20 px-6 md:px-24 flex flex-col md:flex-row items-center justify-between gap-12">
+        {/* Kiri: Judul & Deskripsi */}
+        <div className="md:w-1/2 space-y-5">
+          <h2 className="text-4xl md:text-5xl font-bold">Cakupan Wilayah</h2>
+          <p className="text-sm md:text-base leading-relaxed text-gray-300 max-w-md">
+            Temukan area yang telah terjangkau layanan <span className="text-white font-medium">PrimeLink</span>.
+            Peta interaktif ini memudahkan Anda untuk melihat ketersediaan jaringan internet
+            berkualitas tinggi di lokasi Anda.
+          </p>
+        </div>
+
+        {/* Kanan: Google Maps */}
+        <div className="md:w-1/2 w-full h-[280px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl border border-white/10">
+          <iframe
+            title="Lokasi Prime Link Communication"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7699809584115!2d106.76008610989489!3d-6.161552893799904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f74aff72bb05%3A0xc77379909682171c!2sPT%20Prime%20Link%20Communication!5e0!3m2!1sid!2sid!4v1748333634397!5m2!1sid!2sid"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </section>
 
 
     </>

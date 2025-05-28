@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://primelink.id/sitemap.xml
