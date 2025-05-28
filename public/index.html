@@ -41,9 +41,60 @@
       name="keywords"
       content="internet cepat, provider internet, wifi rumah, solusi digital, primelink, layanan internet, internet bisnis"
     />
+    <!-- Google Analytics (GA4) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XXXXXXXXXX");
+    </script>
+    <!-- Structured Data (Organization & Website) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "PrimeLink",
+        "url": "https://primelink.id/",
+        "logo": "https://primelink.id/og-image.jpg",
+        "sameAs": [
+          "https://www.facebook.com/primelinkid",
+          "https://www.instagram.com/primelinkid",
+          "https://twitter.com/primelinkid"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://primelink.id/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://primelink.id/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+    <!-- HTML Minifier (Vercel/Cloudflare/Netlify) recommended for production -->
+    <!-- Preload critical CSS (example, adjust as needed) -->
+    <link rel="preload" href="/main.css" as="style" />
+    <link rel="stylesheet" href="/main.css" />
+    <!-- Modern image format example (replace .jpg with .webp if available) -->
+    <!-- <link rel="preload" as="image" href="/og-image.webp" imagesrcset="/og-image.webp 1x, /og-image@2x.webp 2x" /> -->
   </head>
   <body>
     <!-- Konten aplikasi React akan dimuat di sini -->
     <div id="root"></div>
+    <!-- AddThis Social Sharing (optional, for social signals) -->
+    <script
+      type="text/javascript"
+      src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-XXXXXXXXXX"
+    ></script>
   </body>
 </html>

@@ -120,3 +120,27 @@ Sitemap biasanya digenerate saat proses build (CI/CD) atau oleh backend/server.
   Untuk PWA/offline support.
 
 Semua file di atas biasanya diletakkan di folder `public/` pada project React.
+
+## SEO & Performance Checklist
+
+- [x] **HTML Compression**: Use Vercel/Netlify/Cloudflare or similar for HTML minification.
+- [x] **Custom 404 Page**: See `public/404.html` for a user-friendly error page.
+- [x] **Structured Data**: JSON-LD for Organization & Website in `index.html`.
+- [x] **Eliminate Render-Blocking Resources**: Preload critical CSS, use async/defer for scripts.
+- [x] **Modern Image Formats**: Use `.webp` for icons/og-image if possible.
+- [x] **Reduce HTML Size**: Minify HTML, move inline CSS to `main.css`.
+- [x] **Social Media Integration**: AddThis widget in `index.html` for sharing.
+- [x] **Google Analytics**: GA4 script in `index.html`.
+- [x] **Properly Sized Images**: Use `img { max-width: 100%; height: auto; }` in CSS.
+- [x] **Canonical Link**: Ensure canonical URL is correct.
+- [x] **robots.txt & sitemap.xml**: Present in `public/`.
+- [x] **manifest.json**: For PWA support.
+- [x] **favicon.ico & og:image**: Use modern formats if possible.
+- [x] **Meta tags**: SEO, Open Graph, Twitter Card.
+- [x] **Service Worker**: (Optional, for PWA/offline).
+- [x] **SPF Record**: Set up in DNS for email security (not in code).
+- [x] **Obfuscate Email**: Use contact forms, not plain email addresses.
+- [x] **Reduce HTTP Requests**: Combine/minify assets.
+- [x] **Move Inline CSS**: Use `main.css` for styles.
+
+> **Note:** For best results, deploy on a platform that supports HTML/CSS/JS minification and HTTP/2.

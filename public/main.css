@@ -1,0 +1,22 @@
+/* Example: Move inline styles here for critical UI elements */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f7f9;
+    color: #222;
+    margin: 0;
+}
+
+a {
+    color: #1D6EE5;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
