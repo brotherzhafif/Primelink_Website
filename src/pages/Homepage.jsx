@@ -214,10 +214,6 @@ export default function Homepage() {
         open={chatbotOpen}
         setOpen={setChatbotOpen}
       />
-
-      <Routes>
-        <Route path="/artikel/:id" element={<ArticleDetail />} />
-      </Routes>
     </div>
   );
 }

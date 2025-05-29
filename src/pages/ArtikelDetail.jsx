@@ -76,7 +76,7 @@ const ArtikelDetail = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#f7f7f9] py-10 px-2 flex justify-center">
+        <div className="min-h-screen bg-[#f7f7f9] py-6 px-1 flex flex-col md:flex-row items-start md:justify-center">
             <Helmet>
                 <title>{artikel.judul_blog} | PrimeLink</title>
                 <meta name="description" content={artikel.isi_blog?.replace(/<[^>]+>/g, "").slice(0, 160)} />
@@ -93,7 +93,7 @@ const ArtikelDetail = () => {
                 <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
             </Helmet>
             {/* Sidebar rekomendasi */}
-            <aside className="hidden md:block w-72 mr-8">
+            <aside className="w-full md:w-72 md:mr-8 order-2 md:order-1 mt-8 md:mt-0">
                 <div className="bg-white rounded-2xl shadow-md p-4">
                     <h2 className="text-lg font-bold mb-3">Rekomendasi Artikel</h2>
                     <ul className="space-y-4">
@@ -123,7 +123,7 @@ const ArtikelDetail = () => {
                 </div>
             </aside>
             {/* Artikel utama */}
-            <div className="max-w-2xl w-full p-0 md:p-10 bg-white rounded-2xl shadow-md">
+            <div className="max-w-2xl w-full p-0 md:p-10 bg-white rounded-2xl shadow-md order-1 md:order-2">
                 {/* Tombol kembali */}
                 <div className="mb-6">
                     <Link
@@ -136,11 +136,11 @@ const ArtikelDetail = () => {
                         Kembali ke Beranda
                     </Link>
                 </div>
-                <h1 className="text-3xl font-bold mb-4">{artikel.judul_blog}</h1>
+                <h1 className="text-2xl md:text-3xl font-bold mb-4">{artikel.judul_blog}</h1>
                 {artikel.gambar && (
-                    <img src={artikel.gambar} alt={artikel.judul_blog} className="mb-6 rounded-lg w-full" />
+                    <img src={artikel.gambar} alt={artikel.judul_blog} className="mb-6 rounded-lg w-full max-h-60 object-cover" />
                 )}
-                <div className="prose" dangerouslySetInnerHTML={{ __html: artikel.isi_blog }} />
+                <div className="prose max-w-none text-base md:text-lg" style={{ wordBreak: "break-word" }} dangerouslySetInnerHTML={{ __html: artikel.isi_blog }} />
                 <div className="text-sm text-gray-500 mt-8">
                     Diperbarui: {formatDateToIndo(artikel.updated_at)}
                 </div>

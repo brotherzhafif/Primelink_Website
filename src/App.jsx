@@ -10,6 +10,14 @@ function App() {
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/artikel/:slug/:id" element={<ArtikelDetail />} />
+      {/* Fallback 404 route */}
+      <Route path="*" element={
+        <div style={{ padding: "80px 0", textAlign: "center" }}>
+          <h1 style={{ fontSize: "2rem", color: "#1d6ee5" }}>404</h1>
+          <p>Halaman tidak ditemukan.</p>
+          <a href="/" style={{ color: "#1d6ee5", fontWeight: 600 }}>Kembali ke Beranda</a>
+        </div>
+      } />
     </Routes>
   );
 }
