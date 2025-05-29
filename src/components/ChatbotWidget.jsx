@@ -144,7 +144,7 @@ export default function ChatbotWidget({ initialMessage = "", open: openProp, set
                 <div
                     style={{
                         position: "fixed",
-                        bottom: isMobile ? 68 : 90,
+                        bottom: isMobile ? 8 : 20,
                         right: isMobile ? 8 : 20,
                         width: isMobile ? "95vw" : 370,
                         maxWidth: isMobile ? "98vw" : "95vw",
