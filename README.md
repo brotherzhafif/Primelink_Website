@@ -1,146 +1,156 @@
-# React + Vite
+# PrimeLink Website – React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PrimeLink Communication adalah perusahaan Internet Service Provider (ISP) yang menyediakan layanan internet cepat, stabil, dan solusi digital untuk rumah maupun bisnis. Website ini dibangun sebagai portal resmi perusahaan untuk menghadirkan informasi lengkap seputar layanan, paket harga, cakupan wilayah, artikel edukasi, serta membuka peluang karir secara profesional dan mudah diakses.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tentang Website
 
-## Sitemap
+Website PrimeLink dirancang untuk mendukung kebutuhan digitalisasi perusahaan dengan desain profesional dan pengalaman pengguna yang mudah. Pengunjung dapat mencari informasi layanan, paket, coverage area, membaca blog, menghubungi customer service (termasuk AI Chatbot), serta melamar pekerjaan secara langsung melalui website.
 
-Untuk SEO, sitemap biasanya berupa file `sitemap.xml` yang diletakkan di folder `public/` pada project React.  
-Sitemap ini berisi daftar URL penting di website, misal:
+---
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://primelink.id/</loc>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://primelink.id/artikel/slug-judul/id</loc>
-    <priority>0.8</priority>
-  </url>
-  <!-- Tambahkan URL lain sesuai kebutuhan -->
-</urlset>
+## Fitur Utama
+
+- **Landing Page Modern**: Desain responsif, profesional, dan mudah dinavigasi.
+- **Layanan & Harga**: Info detail paket internet, fitur, dan harga.
+- **Blog & Artikel**: Edukasi, tips, dan update teknologi.
+- **Karir & Lowongan**: Daftar pekerjaan, filter, dan tombol Lamar via WhatsApp.
+- **Form Kontak & Lokasi**: Formulir, alamat, dan peta cakupan wilayah.
+- **AI Chatbot & Customer Service**: Bantuan otomatis dan live chat.
+- **Integrasi WhatsApp**: Semua tombol WA (Lamar, Subscribe, Floating WA) pakai nomor dari `.env`.
+- **SEO & Social**: Meta tag, Open Graph, Twitter Card, sitemap.xml, robots.txt.
+- **PWA Ready**: manifest.json, favicon, og-image, service worker (opsional).
+
+---
+
+## Teknologi & Library Frontend
+
+Website ini dibangun menggunakan:
+
+- **React** – Library utama untuk UI interaktif dan modular.
+- **Vite** – Build tool modern untuk pengembangan cepat dan optimalisasi produksi.
+- **react-helmet-async** – Manajemen meta tag SEO per halaman.
+- **react-router-dom** – Routing single-page application.
+- **lucide-react** – Ikon modern dan ringan.
+- **Framer Motion** – Animasi UI.
+- **AddThis** – Integrasi social sharing (opsional).
+- **AI Chatbot** – Komponen chatbot untuk layanan pelanggan otomatis (terhubung ke API backend).
+- **Google Analytics** – (opsional) untuk tracking dan analitik pengunjung.
+
+---
+
+## Teknologi & Library Backend
+
+Backend API dibangun menggunakan **Node.js** dan **Express** sebagai framework utama.  
+Beberapa library dan modul utama yang digunakan antara lain:
+
+- **express** – Framework utama REST API.
+- **dotenv** – Manajemen konfigurasi environment (.env).
+- **cors** – Mendukung cross-origin resource sharing.
+- **firebase-admin** – Integrasi dengan Firebase untuk autentikasi dan database.
+- **groq-sdk** – Koneksi ke layanan AI Groq untuk fitur chatbot.
+- **multer** – Middleware untuk upload file/form-data.
+- **socket.io** – Real-time communication (opsional).
+- **axios** – HTTP client untuk kebutuhan API eksternal.
+
+Semua dependensi backend dikelola melalui `package.json` dan `package-lock.json`.
+
+---
+
+## AI Chatbot
+
+Fitur AI Chatbot pada website ini menggunakan model **Groq Llama 3** (llama-3.3-70b-versatile) melalui layanan Groq API.  
+Chatbot didesain untuk menjawab pertanyaan seputar layanan, paket, FAQ, dan kontak resmi Primelink secara profesional dan informatif, serta selalu menggunakan Bahasa Indonesia.
+
+---
+
+## Struktur Folder
+
+```
+src/
+  ├── assets/            # Gambar, ikon, logo
+  ├── components/        # Komponen global (Chatbot, dsb)
+  ├── pageSection/       # Section utama (about, career, qna, faq, dst)
+  ├── pages/             # Halaman utama (Homepage, ArtikelDetail, dsb)
+  ├── App.jsx            # Routing utama
+  └── main.jsx           # Entry point React
+public/
+  ├── index.html         # HTML utama
+  ├── favicon.ico        # Favicon
+  ├── og-image.jpg       # Social preview
+  ├── manifest.json      # PWA manifest
+  ├── robots.txt         # SEO robots
+  └── sitemap.xml        # Sitemap SEO
+.env                     # Konfigurasi environment (WA number, dsb)
 ```
 
-**Cara membuat sitemap di React:**
+---
 
-- Buat file `public/sitemap.xml` secara manual, atau
-- Gunakan plugin seperti [vite-plugin-sitemap](https://www.npmjs.com/package/vite-plugin-sitemap) untuk generate otomatis saat build.
+## Konfigurasi WhatsApp Number
 
-Jangan lupa submit sitemap ke Google Search Console agar website lebih mudah terindeks.
+Semua tombol WhatsApp (Lamar, Subscribe, Floating WA) mengambil nomor dari file `.env`:
 
-## Sitemap Otomatis di React
+```properties
+VITE_WA_NUMBER=6282220368462
+```
 
-Sitemap **tidak bisa digenerate otomatis dari kode React client-side saat dijalankan di browser**.  
-Sitemap biasanya digenerate saat proses build (CI/CD) atau oleh backend/server.
+**Cara ganti nomor WA:**  
+Ubah value di `.env`, lalu restart dev server (`npm run dev`).
 
-### Cara umum generate sitemap otomatis:
+Di kode, akses dengan:
 
-1. **Static Site Generator/Build Plugin**  
-   Gunakan plugin seperti:
+```js
+import.meta.env.VITE_WA_NUMBER;
+```
 
-   - [vite-plugin-sitemap](https://www.npmjs.com/package/vite-plugin-sitemap) (untuk Vite)
-   - [react-router-sitemap](https://www.npmjs.com/package/react-router-sitemap) (untuk React Router)
-   - [next-sitemap](https://www.npmjs.com/package/next-sitemap) (untuk Next.js)
+---
 
-2. **Manual Script Node.js**  
-   Buat script Node.js yang membaca daftar route/artikel dari API atau file, lalu generate `public/sitemap.xml` sebelum deploy.
+## Cara Menjalankan
 
-3. **Backend API**  
-   Jika punya backend, endpoint `/sitemap.xml` bisa mengenerate sitemap secara dinamis.
+1. **Install dependencies**
 
-### Contoh generate sitemap dengan vite-plugin-sitemap
-
-1. Install:
    ```
-   npm install vite-plugin-sitemap --save-dev
-   ```
-2. Tambahkan ke `vite.config.js`:
-
-   ```js
-   import { defineConfig } from "vite";
-   import react from "@vitejs/plugin-react";
-   import { ViteSitemapPlugin } from "vite-plugin-sitemap";
-
-   export default defineConfig({
-     plugins: [
-       react(),
-       ViteSitemapPlugin({
-         hostname: "https://primelink.id",
-         routes: [
-           "/",
-           "/artikel/:slug/:id", // gunakan dynamic route jika perlu
-           // Tambahkan route lain jika perlu
-         ],
-       }),
-     ],
-   });
+   npm install
    ```
 
-3. Setelah build (`npm run build`), file `dist/sitemap.xml` akan otomatis dibuat.
+2. **Konfigurasi .env**
 
-**Catatan:**
+   ```
+   VITE_WA_NUMBER=62***********
+   ```
 
-- Untuk artikel dinamis, sebaiknya fetch data artikel dari API lalu generate sitemap di proses build/deploy.
-- Untuk project React murni (tanpa SSR/SSG), sitemap tetap harus digenerate di luar kode React (bukan di komponen).
+3. **Jalankan development server**
 
-## File penting untuk SEO & Web Modern
+   ```
+   npm run dev
+   ```
 
-- **sitemap.xml**  
-  Untuk membantu search engine mengindeks halaman website.
+4. **Build untuk produksi**
+   ```
+   npm run build
+   ```
 
-- **robots.txt**  
-  Mengatur halaman mana yang boleh/tidak boleh di-crawl oleh search engine.  
-  Contoh isi:
+---
 
-  ```
-  User-agent: *
-  Allow: /
-  Sitemap: https://primelink.id/sitemap.xml
-  ```
+## SEO & Web Modern
 
-- **manifest.json**  
-  Untuk Progressive Web App (PWA), mengatur icon, nama, dsb.
+- Setiap halaman sudah menggunakan meta tag dinamis (title, description, canonical, og:_, twitter:_) dengan [react-helmet-async].
+- Sitemap (`public/sitemap.xml`) dan robots.txt (`public/robots.txt`) sudah tersedia untuk indexing mesin pencari.
+- Social preview (og-image, favicon) sudah diatur.
+- Mendukung PWA (Progressive Web App) dengan manifest.json dan service worker (opsional).
+- Google Analytics dapat diaktifkan di `public/index.html`.
 
-- **favicon.ico & og-image.jpg**  
-  Untuk icon browser dan preview di media sosial.
+---
 
-- **Meta tag SEO**  
-  Pastikan setiap halaman punya `<title>`, `<meta name="description">`, dan tag Open Graph (`og:*`) serta Twitter Card.
+## Catatan
 
-- **Google Analytics / Tag Manager**  
-  Untuk tracking pengunjung.
+- Untuk sitemap/artikel dinamis, generate sitemap di proses build/deploy.
+- Semua file SEO (`manifest.json`, `robots.txt`, `sitemap.xml`, favicon, og-image) ada di folder `public/`.
+- Untuk perubahan nomor WhatsApp, cukup edit `.env` dan restart server.
 
-- **service-worker.js** (opsional)  
-  Untuk PWA/offline support.
+---
 
-Semua file di atas biasanya diletakkan di folder `public/` pada project React.
+> Website ini dibuat untuk mendukung kebutuhan digitalisasi dan layanan pelanggan PrimeLink Communication secara profesional, informatif, dan mudah diakses oleh seluruh calon pelanggan maupun pelamar kerja.
 
-## SEO & Performance Checklist
-
-- [x] **HTML Compression**: Use Vercel/Netlify/Cloudflare or similar for HTML minification.
-- [x] **Custom 404 Page**: See `public/404.html` for a user-friendly error page.
-- [x] **Structured Data**: JSON-LD for Organization & Website in `index.html`.
-- [x] **Eliminate Render-Blocking Resources**: Preload critical CSS, use async/defer for scripts.
-- [x] **Modern Image Formats**: Use `.webp` for icons/og-image if possible.
-- [x] **Reduce HTML Size**: Minify HTML, move inline CSS to `main.css`.
-- [x] **Social Media Integration**: AddThis widget in `index.html` for sharing.
-- [x] **Google Analytics**: GA4 script in `index.html`.
-- [x] **Properly Sized Images**: Use `img { max-width: 100%; height: auto; }` in CSS.
-- [x] **Canonical Link**: Ensure canonical URL is correct.
-- [x] **robots.txt & sitemap.xml**: Present in `public/`.
-- [x] **manifest.json**: For PWA support.
-- [x] **favicon.ico & og:image**: Use modern formats if possible.
-- [x] **Meta tags**: SEO, Open Graph, Twitter Card.
-- [x] **Service Worker**: (Optional, for PWA/offline).
-- [x] **SPF Record**: Set up in DNS for email security (not in code).
-- [x] **Obfuscate Email**: Use contact forms, not plain email addresses.
-- [x] **Reduce HTTP Requests**: Combine/minify assets.
-- [x] **Move Inline CSS**: Use `main.css` for styles.
-
-> **Note:** For best results, deploy on a platform that supports HTML/CSS/JS minification and HTTP/2.
+---
