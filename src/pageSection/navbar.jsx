@@ -71,7 +71,7 @@ export default function Navbar() {
               <button
                 onClick={() => {
                   setDropdownOpen(!dropdownOpen);
-                  setMoreSubmenuOpen(false); // tutup More kalau dropdown dibuka
+                  setMoreSubmenuOpen(false);
                 }}
                 className="btn btn-ghost btn-circle flex items-center justify-center"
               >
@@ -110,13 +110,55 @@ export default function Navbar() {
 
               {dropdownOpen && (
                 <ul className="absolute right-0 mt-3 w-[240px] bg-white rounded-lg shadow-md py-3 px-4 z-50 space-y-1">
+                  <li className="relative">
+                    <button
+                      onClick={() => setMoreSubmenuOpen(!moreSubmenuOpen)}
+                      className="w-full text-left block px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-all"
+                    >
+                      Tentang
+                    </button>
+                    {moreSubmenuOpen && (
+                      <div className="ml-4 mt-1 space-y-1">
+                                                <a
+                          href="#about-us"
+                          onClick={() => {
+                            setMoreSubmenuOpen(false);
+                            setDropdownOpen(false);
+                          }}
+                          className="block px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-all"
+                        >
+                          Profil
+                        </a>
+                        <a
+                          href="#career"
+                          onClick={() => {
+                            setMoreSubmenuOpen(false);
+                            setDropdownOpen(false);
+                          }}
+                          className="block px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-all"
+                        >
+                          Karir
+                        </a>
+                        <a
+                          href="#faq"
+                          onClick={() => {
+                            setMoreSubmenuOpen(false);
+                            setDropdownOpen(false);
+                          }}
+                          className="block px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-all"
+                        >
+                          FAQ
+                        </a>
+                      </div>
+                    )}
+                  </li>
                   <li>
                     <a
                       href="#our-services"
                       onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-all"
                     >
-                      Service
+                      Layanan
                     </a>
                   </li>
                   <li>
@@ -125,7 +167,7 @@ export default function Navbar() {
                       onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-all"
                     >
-                      Pricing
+                      Harga
                     </a>
                   </li>
                   <li>
@@ -135,6 +177,15 @@ export default function Navbar() {
                       className="block px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-all"
                     >
                       Blog
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#contact"
+                      onClick={() => setDropdownOpen(false)}
+                      className="block px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-all"
+                    >
+                      Kontak
                     </a>
                   </li>
                 </ul>
@@ -162,43 +213,28 @@ export default function Navbar() {
 
           {/* Navigasi */}
           <div className="flex gap-6 text-lg items-center pr-14 relative">
-            <a
-              href="#our-services"
-              className={`${navLinkStyle()} px-4 py-2 hover:bg-blue-50 rounded-lg`}
-            >
-              Service
-            </a>
-            <a
-              href="#pricing"
-              className={`${navLinkStyle()} px-4 py-2 hover:bg-blue-50 rounded-lg`}
-            >
-              Pricing
-            </a>
-            <a
-              href="#blog"
-              className={`${navLinkStyle()} px-4 py-2 hover:bg-blue-50 rounded-lg`}
-            >
-              Blog
-            </a>
-            <a
-              href="#contact"
-              className={`${navLinkStyle()} px-4 py-2 hover:bg-blue-50 rounded-lg`}
-            >
-              Kontak
-            </a>
-
-            {/* Dropdown More */}
-            {/* <div className="relative">
+            {/* Tentang Dropdown */}
+            <div className="relative">
               <button
                 onClick={() => setMoreSubmenuOpen(!moreSubmenuOpen)}
                 className="px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-colors"
               >
-                More ▾
+                Tentang
               </button>
               {moreSubmenuOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-md z-50">
+                <div className="absolute left-0 mt-2 w-40 bg-white rounded-lg shadow-md z-50">
+                                                                  <a
+                          href="#about-us"
+                          onClick={() => {
+                            setMoreSubmenuOpen(false);
+                            setDropdownOpen(false);
+                          }}
+                          className="block px-4 py-2 text-black hover:bg-blue-50 rounded-lg transition-all"
+                        >
+                          Profil
+                        </a>
                   <a
-                    href="#karir"
+                    href="#career"
                     onClick={() => setMoreSubmenuOpen(false)}
                     className="block px-4 py-2 text-black hover:bg-blue-50 rounded-t-lg"
                   >
@@ -213,7 +249,32 @@ export default function Navbar() {
                   </a>
                 </div>
               )}
-            </div> */}
+            </div>
+
+            <a
+              href="#our-services"
+              className={`${navLinkStyle()} px-4 py-2 hover:bg-blue-50 rounded-lg`}
+            >
+              Layanan
+            </a>
+            <a
+              href="#pricing"
+              className={`${navLinkStyle()} px-4 py-2 hover:bg-blue-50 rounded-lg`}
+            >
+              Harga
+            </a>
+            <a
+              href="#blog"
+              className={`${navLinkStyle()} px-4 py-2 hover:bg-blue-50 rounded-lg`}
+            >
+              Blog
+            </a>
+            <a
+              href="#contact"
+              className={`${navLinkStyle()} px-4 py-2 hover:bg-blue-50 rounded-lg`}
+            >
+              Kontak
+            </a>
           </div>
         </motion.header>
       )}

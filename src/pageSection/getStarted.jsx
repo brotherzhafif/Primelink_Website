@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from 'react-router-dom';
 import digitalUpgradeImg from '../assets/digitalupgrade.png'; // sesuaikan path-nya
 import hardDiskImage from '../assets/fotohomefixx.png';
 
@@ -27,10 +27,11 @@ export default function GetStarted() {
 
           {/* TEKS KIRI */}
           <div className="relative z-[10] lg:pl-16 space-y-8 px-4">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0B1F47] leading-tight">
-              Redefining the <span className="text-[#001D52]">Digital</span> <br />
-              Experience.
-            </h1>
+<h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0B1F47] leading-tight">
+  Pengalaman Digital <span className="text-[#005AE2]">Lebih Cerdas</span> <br />
+  dan <span className="text-[#001D52]">Terpercaya</span>.
+</h1>
+
 
             <motion.div
               whileHover={{ scale: 1.05 }}
