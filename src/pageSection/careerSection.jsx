@@ -61,9 +61,11 @@ export default function CareersSection() {
       <Helmet>
         <title>Karir | PrimeLink</title>
         <meta name="description" content="Bergabunglah bersama tim PrimeLink! Lihat lowongan kerja terbaru di bidang teknologi, marketing, dan lainnya." />
-        <link rel="canonical" href="https://primelink.id/#karir" />
+        <link rel="canonical" href="https://primelink.id/#career" />
       </Helmet>
-      <section className="bg-white text-black px-6 py-20">
+
+      {/* Section dengan id untuk anchor */}
+      <section id="career" className="bg-white text-black px-6 py-20">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold leading-tight mb-4 text-[#150E42]">
             Gabung dan <span className="text-blue-500">Berkembang</span>

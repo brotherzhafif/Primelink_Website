@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Helmet } from "react-helmet-async";
 import { FaQuoteLeft } from 'react-icons/fa';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { Helmet } from "react-helmet-async";
 
 const testimonials = [
   {
@@ -201,44 +201,46 @@ const CombinedSection = () => {
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section className="bg-white py-20 px-4 md:px-10 lg:px-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">FAQ</h2>
-          <p className="text-gray-600 mb-2">
-            Kami mengumpulkan pertanyaan-pertanyaan yang paling sering diajukan oleh pelanggan dan calon pelanggan untuk membantumu mendapatkan informasi lebih cepat, tanpa harus menunggu.
-          </p>
-          <p className="text-black font-medium mt-4">
-            Mulai dari proses pemasangan, detail layanan, hingga cara pembayaran — semuanya kami jawab secara ringkas dan jelas.
-          </p>
-        </div>
+  {/* FAQ SECTION */}
+<section id="faq" className="bg-white py-20 px-4 md:px-10 lg:px-20">
+  <div className="max-w-4xl mx-auto text-center">
+    <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">FAQ</h2>
+    <p className="text-gray-600 mb-2">
+      Kami mengumpulkan pertanyaan-pertanyaan yang paling sering diajukan oleh pelanggan dan calon pelanggan untuk membantumu mendapatkan informasi lebih cepat, tanpa harus menunggu.
+    </p>
+    <p className="text-black font-medium mt-4">
+      Mulai dari proses pemasangan, detail layanan, hingga cara pembayaran — semuanya kami jawab secara ringkas dan jelas.
+    </p>
+  </div>
 
-        <div className="mt-12 max-w-3xl mx-auto bg-white shadow-lg rounded-xl divide-y divide-gray-200">
-          {faqData.map((faq, i) => (
-            <div key={i}>
-              <button
-                onClick={() => toggleFAQ(i)}
-                className="w-full text-left px-6 py-5 flex items-center justify-between focus:outline-none hover:bg-gray-50 transition duration-200"
-              >
-                <span
-                  className={`font-medium text-sm md:text-base ${i === openIndex ? 'text-blue-600' : 'text-gray-800'
-                    }`}
-                >
-                  {faq.question}
-                </span>
-                <span className="text-2xl font-bold text-blue-600">
-                  {i === openIndex ? '−' : '+'}
-                </span>
-              </button>
-              {i === openIndex && (
-                <div className="px-6 pb-5 text-gray-600 text-sm md:text-base leading-relaxed">
-                  {faq.answer}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
+  <div className="mt-12 max-w-3xl mx-auto bg-white shadow-lg rounded-xl divide-y divide-gray-200">
+    {faqData.map((faq, i) => (
+      <div key={i}>
+        <button
+          onClick={() => toggleFAQ(i)}
+          className="w-full text-left px-6 py-5 flex items-center justify-between focus:outline-none hover:bg-gray-50 transition duration-200"
+        >
+          <span
+            className={`font-medium text-sm md:text-base ${
+              i === openIndex ? 'text-blue-600' : 'text-gray-800'
+            }`}
+          >
+            {faq.question}
+          </span>
+          <span className="text-2xl font-bold text-blue-600">
+            {i === openIndex ? '−' : '+'}
+          </span>
+        </button>
+        {i === openIndex && (
+          <div className="px-6 pb-5 text-gray-600 text-sm md:text-base leading-relaxed">
+            {faq.answer}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+</section>
+
     </>
   );
 };
