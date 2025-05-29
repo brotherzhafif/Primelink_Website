@@ -6,6 +6,7 @@ import ChatbotWidget from "../components/ChatbotWidget.jsx";
 import AboutUsSection from "../pageSection/aboutUsSection.jsx";
 import ArticleDetail from "../pageSection/articleDetail.jsx";
 import ArticleSection from "../pageSection/articleSection.jsx";
+import CareerSection from "../pageSection/careerSection.jsx"; // ✅ PENTING: pastikan ini ada!
 import ContactSection from "../pageSection/contactSection.jsx";
 import Faq from "../pageSection/faq.jsx";
 import Footer from "../pageSection/footer.jsx";
@@ -139,9 +140,9 @@ export default function Homepage() {
       <div ref={articleRef}>
         <ArticleSection />
       </div>
-      {/* <div ref={careerRef}>
+      <div ref={careerRef}>
         <CareerSection />
-      </div> */}
+      </div>
       <div ref={contactRef}>
         <ContactSection />
       </div>
