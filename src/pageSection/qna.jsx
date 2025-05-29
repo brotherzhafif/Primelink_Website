@@ -87,9 +87,10 @@ const PriceList = () => {
                 <button
                   className="bg-blue-600 hover:bg-blue-700 transition text-white font-semibold py-2 rounded-md w-full mt-auto"
                   onClick={() => {
+                    const waNumber = import.meta.env.VITE_WA_NUMBER || "6282281933619";
                     const pesan = `Halo admin Primelink,%0A%0ASaya tertarik untuk berlangganan layanan *${pkg.title}*.%0ASaya ingin mengetahui lebih detail mengenai paket ini dan proses pendaftarannya.%0A%0A*Mohon bantuannya untuk proses pemesanan paket ${pkg.title}.*%0A%0ATerima kasih.`;
                     window.open(
-                      `https://wa.me/6282281933619?text=${pesan}`,
+                      `https://wa.me/${waNumber}?text=${pesan}`,
                       "_blank"
                     );
                   }}

@@ -147,7 +147,7 @@ export default function CareersSection() {
                       </div>
                       <div className="mt-6">
                         <a
-                          href={`https://wa.me/6282281933619?text=${encodeURIComponent(
+                          href={`https://wa.me/${import.meta.env.VITE_WA_NUMBER || "6282281933619"}?text=${encodeURIComponent(
                             `Halo admin Primelink, Saya tertarik untuk melamar posisi *${job.title}* di kategori *${section.category}*. Saya ingin mengetahui lebih detail mengenai deskripsi pekerjaan, kualifikasi, dan proses rekrutmennya. *Mohon bantuannya untuk proses lamaran posisi ${job.title}.* Terima kasih.`
                           )}`}
                           target="_blank"

@@ -149,7 +149,7 @@ export default function Homepage() {
       <Footer />
 
       <a
-        href={`https://wa.me/6282281933619?text=${encodeURIComponent(
+        href={`https://wa.me/${import.meta.env.VITE_WA_NUMBER || "6282281933619"}?text=${encodeURIComponent(
           `Halo admin PrimeLink *Saya ingin bertanya lebih lanjut mengenai layanan internet yang tersedia di PrimeLink. Mohon bantuannya untuk memberikan informasi detail terkait paket, harga, dan proses pendaftarannya.* Terima kasih sebelumnya atas respon dan bantuannya.`
         )}`}
         target="_blank"
