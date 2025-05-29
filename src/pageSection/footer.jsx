@@ -42,11 +42,21 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Perusahaan</h4>
             <ul className="space-y-2 text-sm text-gray-300">
-              {["Tentang Kami", "Layanan", "Daftar Harga", "Cakupan Wilayah", "Testimonial"].map((item, idx) => (
-                <li key={idx}>
-                  <a href="#" className="hover:text-white transition-colors duration-200">{item}</a>
-                </li>
-              ))}
+              <li>
+                <a href="/#about" className="hover:text-white transition-colors duration-200">Tentang Kami</a>
+              </li>
+              <li>
+                <a href="/#our-services" className="hover:text-white transition-colors duration-200">Layanan</a>
+              </li>
+              <li>
+                <a href="/#pricing" className="hover:text-white transition-colors duration-200">Daftar Harga</a>
+              </li>
+              <li>
+                <a href="/#coverage" className="hover:text-white transition-colors duration-200">Cakupan Wilayah</a>
+              </li>
+              <li>
+                <a href="/#testimonial" className="hover:text-white transition-colors duration-200">Testimonial</a>
+              </li>
             </ul>
           </div>
 
@@ -54,15 +64,66 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Lainnya</h4>
             <ul className="space-y-2 text-sm text-gray-300">
-              {["FAQ", "Blog", "Karir"].map((item, idx) => (
-                <li key={idx}>
-                  <a href="#" className="hover:text-white transition-colors duration-200">{item}</a>
-                </li>
-              ))}
+              <li>
+                <a href="/#faq" className="hover:text-white transition-colors duration-200">FAQ</a>
+              </li>
+              <li>
+                <a href="/#blog" className="hover:text-white transition-colors duration-200">Blog</a>
+              </li>
+              <li>
+                <a href="/#career" className="hover:text-white transition-colors duration-200">Karir</a>
+              </li>
             </ul>
+            {/* Sosial Media */}
+            <div className="flex gap-3 mt-6">
+              <a
+                href="https://www.instagram.com/primelink.communication/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="hover:opacity-80"
+              >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new.png" alt="Instagram" />
+              </a>
+              <a
+                href="https://youtube.com/@primelinkcommunication"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="hover:opacity-80"
+              >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/youtube-play.png" alt="YouTube" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/primelink-communication/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="hover:opacity-80"
+              >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png" alt="LinkedIn" />
+              </a>
+              <a
+                href="https://twitter.com/primelinkid"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+                className="hover:opacity-80"
+              >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/x.png" alt="X" />
+              </a>
+              <a
+                href="https://www.facebook.com/primelinkid"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="hover:opacity-80"
+              >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png" alt="Facebook" />
+              </a>
+            </div>
           </div>
         </div>
-
         {/* Footer Bawah */}
         <div className="border-t border-gray-700 mt-12 pt-6 text-center text-sm text-gray-400">
           © 2020 Primelink. All rights reserved.

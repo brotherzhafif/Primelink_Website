@@ -94,14 +94,45 @@ export default function ContactSection() {
                 <p>sales@primelink.co.id</p>
               </div>
               <div className="flex space-x-4 pt-4">
-                <a href="#" className="bg-[#0F172A] p-2 rounded">
+                <a
+                  href="https://www.instagram.com/primelink.communication/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#0F172A] p-2 rounded"
+                >
                   <img src="https://img.icons8.com/ios-filled/20/ffffff/instagram-new.png" alt="Instagram" />
                 </a>
-                <a href="#" className="bg-[#0F172A] p-2 rounded">
+                <a
+                  href="https://youtube.com/@primelinkcommunication"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#0F172A] p-2 rounded"
+                >
+                  <img src="https://img.icons8.com/ios-filled/20/ffffff/youtube-play.png" alt="YouTube" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/primelink-communication/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#0F172A] p-2 rounded"
+                >
+                  <img src="https://img.icons8.com/ios-filled/20/ffffff/linkedin.png" alt="LinkedIn" />
+                </a>
+                <a
+                  href="https://twitter.com/primelinkid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#0F172A] p-2 rounded"
+                >
                   <img src="https://img.icons8.com/ios-filled/20/ffffff/x.png" alt="X" />
                 </a>
-                <a href="#" className="bg-[#0F172A] p-2 rounded">
-                  <img src="https://img.icons8.com/ios-filled/20/ffffff/linkedin.png" alt="LinkedIn" />
+                <a
+                  href="https://www.facebook.com/primelinkid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#0F172A] p-2 rounded"
+                >
+                  <img src="https://img.icons8.com/ios-filled/20/ffffff/facebook-new.png" alt="Facebook" />
                 </a>
               </div>
             </div>
