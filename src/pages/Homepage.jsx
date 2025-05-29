@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useInView } from "react-intersection-observer";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import ChatbotWidget from "../components/ChatbotWidget.jsx";
+import AboutUsSection from "../pageSection/aboutUsSection.jsx";
+import ArticleDetail from "../pageSection/articleDetail.jsx";
 import ArticleSection from "../pageSection/articleSection.jsx";
-import CareerSection from "../pageSection/careerSection.jsx";
 import ContactSection from "../pageSection/contactSection.jsx";
 import Faq from "../pageSection/faq.jsx";
 import Footer from "../pageSection/footer.jsx";
@@ -11,9 +14,6 @@ import Navbar from "../pageSection/navbar.jsx";
 import Qna from "../pageSection/qna.jsx";
 import Testimonial from "../pageSection/testimonial.jsx";
 import WhyUs from "../pageSection/whyUs.jsx";
-import ArticleDetail from "../pageSection/articleDetail.jsx";
-import ChatbotWidget from "../components/ChatbotWidget.jsx";
-import { Helmet } from "react-helmet-async";
 
 export default function Homepage() {
   const [activeSection, setActiveSection] = useState("");
@@ -25,6 +25,13 @@ export default function Homepage() {
     threshold: 0.5,
     onChange: (inView) => {
       if (inView) setActiveSection("get-started-section");
+    },
+  });
+
+  const { ref: aboutUsRef } = useInView({
+    threshold: 0.5,
+    onChange: (inView) => {
+      if (inView) setActiveSection("about-us-section");
     },
   });
 
@@ -77,7 +84,6 @@ export default function Homepage() {
     },
   });
 
-  // Untuk tombol scroll to top
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
@@ -115,6 +121,9 @@ export default function Homepage() {
       <div ref={getStartedRef}>
         <GetStartedSection />
       </div>
+      <div ref={aboutUsRef}>
+        <AboutUsSection />
+      </div>
       <div ref={whyUsRef}>
         <WhyUs openChatbotWithMessage={openChatbotWithMessage} />
       </div>
@@ -138,7 +147,6 @@ export default function Homepage() {
       </div>
       <Footer />
 
-      {/* ✅ Floating WhatsApp Button */}
       <a
         href={`https://wa.me/6282281933619?text=${encodeURIComponent(
           `Halo admin PrimeLink *Saya ingin bertanya lebih lanjut mengenai layanan internet yang tersedia di PrimeLink. Mohon bantuannya untuk memberikan informasi detail terkait paket, harga, dan proses pendaftarannya.* Terima kasih sebelumnya atas respon dan bantuannya.`
@@ -173,11 +181,9 @@ export default function Homepage() {
             marginRight: window.matchMedia("(max-width: 768px)").matches ? "0" : "10px",
           }}
         />
-        {/* Label hanya tampil di desktop */}
         {!window.matchMedia("(max-width: 768px)").matches && "Ada pertanyaan? WA aja!"}
       </a>
 
-      {/* ⬆️ Scroll to Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
@@ -202,7 +208,6 @@ export default function Homepage() {
         </button>
       )}
 
-      {/* Chatbot floating button */}
       <ChatbotWidget
         initialMessage={chatbotInitialMessage}
         open={chatbotOpen}

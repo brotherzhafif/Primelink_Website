@@ -1,54 +1,42 @@
 import { Helmet } from "react-helmet-async";
 
 const PriceList = () => {
-  const eventData = [
+  const packages = [
     {
-      title: "ISP",
-      price: "Rp 350",
-      subtitle: "/bulan",
-      description: "Get Torque's basic plan to optimise your lead generation process.",
+      title: "PRIME HOME",
+      price: "500K",
+      unit: "/bulan",
+      description: "Paket internet rumahan untuk aktivitas harian tanpa batas.",
       features: [
-        "Unlimited Bandwidth",
-        "24/7 Customer Support",
-        "IP Private",
+        "Kecepatan hingga 30 Mbps",
+        "Kuota Unlimited tanpa Fair Usage Policy (FUP)",
+        "Gratis biaya instalasi & sewa perangkat",
+        "Dukungan teknis 24/7 via WhatsApp & Call Center",
       ],
     },
     {
-      title: "ISP + TV",
-      price: "Rp 500",
-      subtitle: "/bulan",
-      description: "Enjoy internet and TV entertainment in one bundle.",
+      title: "PRIME EXECUTIVE",
+      price: "1.500K",
+      unit: "Jt/bulan",
+      description: "Koneksi ekstra untuk pengguna aktif dan profesional.",
       features: [
-        "80+ Channel TV Nasional & Internasional",
-        "Unlimited Internet",
-        "Free Maintenance",
-        "Set Top Box disediakan",
+        "Kecepatan hingga 100 Mbps",
+        "IP Public Dinamis",
+        "Prioritas Layanan (Low Latency, Minim Gangguan)",
+        "Support layanan cloud & meeting online tanpa lag",
       ],
     },
     {
-      title: "ISP + Telepon",
-      price: "Rp 500",
-      subtitle: "/bulan",
-      description: "Bundle for seamless browsing and communication.",
+      title: "PRIME DEDICATED",
+      price: "2.000K",
+      unit: "/bulan",
+      description: "Paket eksklusif dengan koneksi premium nonstop.",
       features: [
-        "Internet hingga 30 Mbps",
-        "80+ Channel Nasional & Internasional",
-        "Gratis Set Top Box",
-        "Unlimited Bandwidth",
-        "Set Top Box disediakan",
-      ],
-    },
-    {
-      title: "ISP + TV + Telepon",
-      price: "Rp 750",
-      subtitle: "/bulan",
-      description: "Complete package with full internet, TV, and phone features.",
-      features: [
-        "Internet hingga 50 Mbps",
-        "100+ Channel TV",
-        "Telepon Lokal Gratis 100 Menit",
-        "Set Top Box Disediakan",
-        "Dukungan Teknis 24/7",
+        "Dedicated Bandwidth 1:1 hingga 200 Mbps",
+        "IP Publik Statis",
+        "Akses ke 80+ Channel IPTV",
+        "Monitoring & Support Khusus 24/7",
+        "SLA (Service Level Agreement) hingga 98%",
       ],
     },
   ];
@@ -57,61 +45,57 @@ const PriceList = () => {
     <>
       <Helmet>
         <title>Daftar Harga Paket Internet | PrimeLink</title>
-        <meta name="description" content="Lihat daftar harga paket internet, TV, dan telepon dari PrimeLink. Pilih paket terbaik untuk kebutuhan Anda." />
+        <meta
+          name="description"
+          content="Lihat daftar harga paket internet dari PrimeLink. Pilih paket terbaik untuk kebutuhan Anda."
+        />
         <link rel="canonical" href="https://primelink.id/#pricing" />
       </Helmet>
 
-      <section id="pricing" className="bg-white py-20 px-8">
+      <section id="pricing" className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-screen-xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-slate-900 mb-14">
-            Price <span className="text-blue-600">List</span>
+            Daftar <span className="text-blue-600">Harga</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            {eventData.map((pkg, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {packages.map((pkg, index) => (
               <div
                 key={index}
-                className="bg-[#061C3D] text-white p-6 rounded-2xl shadow-lg flex flex-col h-full min-h-[520px]"
+                className="bg-[#061C3D] text-white p-8 rounded-2xl shadow-xl flex flex-col justify-between h-full"
               >
-                <div className="flex flex-col flex-1 justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-3">{pkg.title}</h3>
-                    <div className="flex items-end gap-1 mb-4">
-                      <span className="text-3xl font-bold">{pkg.price}</span>
-                      <span className="text-base text-gray-300">{pkg.subtitle}</span>
-                    </div>
-                    <p className="text-sm text-gray-300 mb-6">{pkg.description}</p>
-
-                    <div>
-                      <h4 className="text-sm font-semibold mb-2 uppercase tracking-wide text-blue-300">
-                        Core Features
-                      </h4>
-                      <p className="text-sm mb-3">Boost Tools</p>
-                      <ul className="space-y-2 text-sm text-left">
-                        {pkg.features.map((feature, i) => (
-                          <li key={i} className="flex items-start">
-                            <span className="text-blue-400 mr-2 mt-0.5">➤</span>
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                <div className="flex flex-col flex-grow">
+                  <h3 className="text-sm font-semibold tracking-widest mb-3 uppercase">
+                    {pkg.title}
+                  </h3>
+                  <div className="flex items-end space-x-2 mb-4">
+                    <span className="text-4xl font-extrabold">IDR {pkg.price}</span>
+                    <span className="text-sm text-gray-300">{pkg.unit}</span>
                   </div>
+                  <p className="text-sm text-gray-300 mb-6 min-h-[48px]">{pkg.description}</p>
 
-                  <button
-                    className="mt-8 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md transition duration-200 w-full"
-                    onClick={() => {
-                      const paket = pkg.title;
-                      const pesan = `Halo admin Primelink,%0A%0ASaya tertarik untuk berlangganan layanan *${paket}*.%0ASaya ingin mengetahui lebih detail mengenai paket ini dan proses pendaftarannya.%0A%0A*Mohon bantuannya untuk proses pemesanan paket ${paket}.*%0A%0ATerima kasih.`;
-                      window.open(
-                        `https://wa.me/6282281933619?text=${pesan}`,
-                        "_blank"
-                      );
-                    }}
-                  >
-                    Subscribe
-                  </button>
+                  <ul className="text-sm space-y-3 text-left mb-6 flex-grow">
+                    {pkg.features.map((feature, i) => (
+                      <li key={i} className="flex items-start">
+                        <span className="text-blue-400 mr-2 mt-0.5">➤</span>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+
+                <button
+                  className="bg-blue-600 hover:bg-blue-700 transition text-white font-semibold py-2 rounded-md w-full mt-auto"
+                  onClick={() => {
+                    const pesan = `Halo admin Primelink,%0A%0ASaya tertarik untuk berlangganan layanan *${pkg.title}*.%0ASaya ingin mengetahui lebih detail mengenai paket ini dan proses pendaftarannya.%0A%0A*Mohon bantuannya untuk proses pemesanan paket ${pkg.title}.*%0A%0ATerima kasih.`;
+                    window.open(
+                      `https://wa.me/6282281933619?text=${pesan}`,
+                      "_blank"
+                    );
+                  }}
+                >
+                  Subscribe
+                </button>
               </div>
             ))}
           </div>
